@@ -1,8 +1,7 @@
 # fibby
 
-A tiny ES6 (harmony) library for node 0.11.2 and up that helps you 
-use fibers with node style callbacks, similar to 
-[suspend](https://github.com/jmar777/suspend)
+A tiny library for node that helps you use fibers with node-style callbacks 
+and works similarly to [suspend](https://github.com/jmar777/suspend)
 
 # usage examples
 
@@ -11,7 +10,7 @@ functions with yield and pass them a resume function instead of
 a callback:
 
 ```js
-fibby.run(function* (fib) {
+fibby.run(function (fib) {
     console.log("Hello");
     fib.yield(setInterval(fib.resume(), 1000))
     console.log("World");
@@ -22,7 +21,7 @@ Handle errors with `try`/`catch`, or as return results via
 `resume.nothrow`
 
 ```js
-fibby.run(function* (fib) {
+fibby.run(function (fib) {
     // Throwing resume
     try { fib.yield(fs.readFile("test.js", fib.resume())); } 
     catch (e) { /* handle the error */ }
@@ -39,7 +38,7 @@ Want to catch all uncaught exceptions? You can pass a callback argument to
 `fibby.run`:
 
 ```js
-fibby.run(function* (fib) {
+fibby.run(function (fib) {
     var data = fib.yield(fs.readFile("test.js", fib.resume.t));
 }, function(err) {
     // thrown error propagates here automagically 
@@ -52,7 +51,7 @@ can accept multiple arguments and a callback. The arguments will be
 passed to your fiber right after the first `resume` argument
 
 ```js
-var getLine = fibby.fn(function* (fib, file, number) {
+var getLine = fibby.fn(function (fib, file, number) {
     var data = fib.yield(fs.readFile(file, fib.resume.t));
     return data.toString().split('\n')[number];
 });
@@ -81,7 +80,7 @@ function returnsmore(callback) {
     callback(null, 'arg1', 'arg2');
 }
 
-fibby.run(function* (fib) {
+fibby.run(function (fib) {
     var res = fib.yield(returnsmore(fib.resume.t));
     var arg1 = res[0];
     var arg2 = res[1];
