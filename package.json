@@ -1,0 +1,37 @@
+{
+  "name": "fibby",
+  "version": "0.1.0",
+  "description": "A tiny fibers library for node that helps you use fibers with node style callbacks.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spion/fibby.git"
+  },
+  "keywords": [
+    "fiber",
+    "fibers",
+    "callback",
+    "hell",
+    "yield",
+    "resume",
+    "suspend"
+  ],
+  "author": "spion",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "fibers": "~1.0.1"
+  },
+  "devDependencies": {
+    "tap": "~0.4.3"
+  },
+  "bugs": {
+    "url": "https://github.com/spion/genny/issues"
+  }
+}
